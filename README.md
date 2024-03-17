@@ -16,7 +16,7 @@ This Music App is a React-based web application that provides users with a platf
 
 ## Demo
 
-To see live preview of the project [Click Here](https://jakimoski.github.io/products-filter/ "React Music Application ")
+To see live preview of the project [Click Here](https://jakimoski.github.io/music-app/ "React Music Application ")
 
 ## Screenshot
 

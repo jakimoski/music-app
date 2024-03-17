@@ -6,7 +6,7 @@ import RootLayout from "../pages/RootLayout/RootLayout";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/music-app",
     element: <RootLayout />,
     children: [
       { index: true, element: <ArtistsList /> },
