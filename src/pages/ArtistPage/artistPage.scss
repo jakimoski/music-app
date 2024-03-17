@@ -1,0 +1,44 @@
+@use "../../styles/abstracts/" as *;
+
+.artist-page {
+  min-height: 100svh;
+  padding: 1rem;
+  &__img {
+    width: 250px;
+    margin: 0 auto;
+    box-shadow: 3px 3px 10px rgba($color: #000000, $alpha: 0.2);
+    &:hover {
+      box-shadow: -3px -3px 10px rgba($color: #000000, $alpha: 0.2);
+    }
+  }
+  &__title {
+    text-align: center;
+    margin: 1rem auto;
+  }
+}
+
+.artist-albums-wrapper {
+  padding-block: 2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  p {
+    text-wrap: balance;
+  }
+}
+
+.artist-albums-item {
+  @include flex-basis("50%", m);
+  box-shadow: 3px 3px 10px rgba($color: #000000, $alpha: 0.2);
+  transition: scale 0.2s ease;
+  &:hover {
+    box-shadow: -3px -3px 10px rgba($color: #000000, $alpha: 0.2);
+    scale: 1.01;
+  }
+}
+
+.artist-albums-img {
+  width: 100%;
+  object-fit: cover;
+}

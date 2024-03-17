@@ -1,0 +1,80 @@
+@use "./variables" as *;
+@use "sass:math";
+
+// MEDIA QUERY MANAGER
+//////////////////////
+// 0 - 480PX:      PHONE
+// 480 - 768PX:    TABLET
+// 768 - 1024PX:    LAPTOP
+// 1024 - 1800PX: IS WHERE OUR NORMAL STYLES APPLY
+// 1800PX + :      BIG DESKTOP
+
+// $BREAKPOINT ARGUEMENT CHOICES:
+// - PHONE
+// - TABLET
+// - LAPTOP
+// - BIG-DESKTOP
+
+// 1EM = 16PX
+@mixin screenSize($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 30em) {
+      @content;
+    } //480px
+  }
+  @if $breakpoint == tablet {
+    @media only screen and (max-width: 48em) {
+      @content;
+    } //768px
+  }
+  @if $breakpoint == laptop {
+    @media only screen and (max-width: 64em) {
+      @content;
+    } //1024px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800px
+  }
+}
+//END OF MEDIA QUERY MANAGER
+//////////////////////
+
+// FLEX BASIS AND GAP
+// /////////////////////
+// MAP FOR FLEX BASIS PERCENTAGES
+$flex-basis-percentages: (
+  "25%": 25%,
+  "33.33%": 33.33%,
+  "50%": 50%,
+  "100%": 100%,
+);
+// MAP FOR GUTTER SIZES
+$gutter-sizes: (
+  s: $gutter-base-s,
+  m: $gutter-base,
+  l: $gutter-base-l,
+);
+// MAP FOR THE NUMBER OF FLEX ITEMS BASED ON FLEX-BASIS-PERCENTAGES
+$flex-items: (
+  "25%": 4,
+  "33.33%": 3,
+  "50%": 2,
+  "100%": 1,
+);
+
+// MIXIN FOR FLEX-BASIS AND GUTTER
+@mixin flex-basis($flex-basis, $gutter-size: null) {
+  $num-items: map-get($flex-items, $flex-basis);
+  $gutter-width: if($gutter-size, map-get($gutter-sizes, $gutter-size), 0);
+  $total-gutter: math.div($gutter-width * ($num-items - 1), $num-items);
+  $flex-basis-value: if(
+    $gutter-size,
+    calc(#{$flex-basis} - #{$total-gutter}),
+    $flex-basis
+  );
+  flex-basis: #{$flex-basis-value};
+}
+// END OF FLEX BASIS AND GAP
+// ////////////////////////////
